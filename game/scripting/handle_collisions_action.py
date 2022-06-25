@@ -3,6 +3,7 @@ from game.casting.actor import Actor
 from game.scripting.action import Action
 from game.shared.point import Point
 
+
 class HandleCollisionsAction(Action):
     """
     An update action that handles interactions between the actors.
@@ -46,7 +47,7 @@ class HandleCollisionsAction(Action):
             snake.grow_tail(points)
             score.add_points(points)
             food.reset()
-    
+
     def _handle_segment_collision(self, cast):
         """Sets the game over flag if the snake collides with one of its segments.
         
@@ -56,11 +57,11 @@ class HandleCollisionsAction(Action):
         snake = cast.get_first_actor("snakes")
         head = snake.get_segments()[0]
         segments = snake.get_segments()[1:]
-        
+
         for segment in segments:
             if head.get_position().equals(segment.get_position()):
                 self._is_game_over = True
-        
+
     def _handle_game_over(self, cast):
         """Shows the 'game over' message and turns the snake and food white if the game is over.
         
@@ -77,7 +78,18 @@ class HandleCollisionsAction(Action):
             position = Point(x, y)
 
             message = Actor()
-            message.set_text("Game Over!")
+            message.set_text("    * * * *             * * * *         * *             * *     * * * * * * * *\n"
+                             "* *                 * *         * *     * * * *     * * * *     * * \n"
+                             "* *     * * * *     * *         * *     * *     * *     * *     * * * * * *\n"
+                             "* *         * *     * * * * * * * *     * *      *      * *     * * \n"
+                             "    * * * *         * *         * *     * *             * *     * * * * * * * *\n"
+                             "\n"                             
+                             "    * * * *         * *         * *     * * * * * * * *     * * * * * * *\n"
+                             "* *         * *     * *         * *     * *                 * *         * *\n"
+                             "* *         * *     * *         * *     * * * * * *         * * * * * * *\n"
+                             "* *         * *     * * *     * * *     * *                 * *     * *\n"
+                             "    * * * *             * * * *         * * * * * * * *     * *         * *\n")
+
             message.set_position(position)
             cast.add_actor("messages", message)
 
