@@ -16,11 +16,11 @@ class Score(Actor):
     def __init__(self,num):
         super().__init__()
         self.player_num = num
-        self.position = Point(0,0)
+        self.position = Point(15,0)
         self._points = 0
         self.add_points(0)
         if num == 2:
-            self.set_position()
+            self.position = Point(760,0)
 
     def set_player_num(self,num):
         '''Sets the player's number
@@ -43,5 +43,5 @@ class Score(Actor):
         '''Returns the current number of points of said player'''
         return self._points
 
-    def set_position(self):
-        self.position = Point(0,250)
+    def get_position(self):
+        return self.position
