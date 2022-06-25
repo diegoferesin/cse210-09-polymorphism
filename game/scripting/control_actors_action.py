@@ -21,10 +21,10 @@ class ControlActorsAction(Action):
             keyboard_service (KeyboardService): An instance of KeyboardService.
         """
         self._keyboard_service = keyboard_service
-        self._player1_direction = Point(constants.CELL_SIZE, 0)
-        self._player2_direction = Point(constants.CELL_SIZE, 0)
-        self.direction1 = "right"
-        self.direction2 = "right"
+        self._player1_direction = Point(0,-constants.CELL_SIZE)
+        self._player2_direction = Point(0,-constants.CELL_SIZE)
+        self.direction1 = "up"
+        self.direction2 = "up"
 
     def execute(self, cast, script):
         """Executes the control actors action.

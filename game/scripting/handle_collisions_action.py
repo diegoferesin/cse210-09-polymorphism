@@ -27,7 +27,7 @@ class HandleCollisionsAction(Action):
             script (Script): The script of Actions in the game.
         """
         if not self._is_game_over:
-            self._handle_food_collision(cast)
+            #self._handle_food_collision(cast)
             self._handle_segment_collision(cast)
             self._handle_game_over(cast)
 
@@ -71,7 +71,9 @@ class HandleCollisionsAction(Action):
         if self._is_game_over:
             snake = cast.get_first_actor("snakes")
             segments = snake.get_segments()
-            food = cast.get_first_actor("foods")
+            snake2 = cast.get_second_actor("snakes")
+            segments2 = snake2.get_segments()
+            #food = cast.get_first_actor("foods")
 
             x = int(constants.MAX_X / 2)
             y = int(constants.MAX_Y / 2)
@@ -95,4 +97,6 @@ class HandleCollisionsAction(Action):
 
             for segment in segments:
                 segment.set_color(constants.WHITE)
-            food.set_color(constants.WHITE)
+            for segment in segments2:
+                segment.set_color(constants.WHITE)
+            #food.set_color(constants.WHITE)
