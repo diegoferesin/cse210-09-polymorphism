@@ -36,12 +36,14 @@ class ControlActorsAction(Action):
 
 
         snake = cast.get_first_actor("snakes")
+        score = cast.get_first_actor("scores")
         # left
         if self._keyboard_service.is_key_down('a'):
             self._player1_direction = Point(-constants.CELL_SIZE, 0)
             if self.direction1 != "left":
                 self.direction1 = "left"
                 snake.grow_tail(1)
+                score.add_points(1)
         
         # right
         if self._keyboard_service.is_key_down('d'):
@@ -49,6 +51,7 @@ class ControlActorsAction(Action):
             if self.direction1 != "right":
                 self.direction1 = "right"
                 snake.grow_tail(1)
+                score.add_points(1)
 
         # up
         if self._keyboard_service.is_key_down('w'):
@@ -56,6 +59,7 @@ class ControlActorsAction(Action):
             if self.direction1 != "up":
                 self.direction1 = "up"
                 snake.grow_tail(1)
+                score.add_points(1)
 
         # down
         if self._keyboard_service.is_key_down('s'):
@@ -63,10 +67,11 @@ class ControlActorsAction(Action):
             if self.direction1 != "down":
                 self.direction1 = "down"
                 snake.grow_tail(1)
-
+                score.add_points(1)
 
         snake2 = cast.get_second_actor("snakes")
         snake.turn_head(self._player1_direction)
+        score2 = cast.get_second_actor("scores")
 
         # left
         if self._keyboard_service.is_key_down('j'):
@@ -74,6 +79,8 @@ class ControlActorsAction(Action):
             if self.direction2 != "left":
                 self.direction2 = "left"            
                 snake2.grow_tail(1)
+                score2.add_points(1)
+
         
         # right
         if self._keyboard_service.is_key_down('l'):
@@ -81,6 +88,7 @@ class ControlActorsAction(Action):
             if self.direction2 != "right":
                 self.direction2 = "right"            
                 snake2.grow_tail(1)
+                score2.add_points(1)
         
         # up
         if self._keyboard_service.is_key_down('i'):
@@ -88,6 +96,7 @@ class ControlActorsAction(Action):
             if self.direction2 != "up":
                 self.direction2 = "up"            
                 snake2.grow_tail(1)
+                score2.add_points(1)
         
         # down
         if self._keyboard_service.is_key_down('k'):
@@ -95,6 +104,7 @@ class ControlActorsAction(Action):
             if self.direction2 != "down":
                 self.direction2 = "down"            
                 snake2.grow_tail(1)
+                score2.add_points(1)
         
 
         snake2.turn_head(self._player2_direction)
