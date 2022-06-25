@@ -46,8 +46,11 @@ class Snake(Actor):
             segment.set_position(position)
             segment.set_velocity(velocity)
             segment.set_text("#")
-            segment.set_color(constants.GREEN)
             self._segments.append(segment)
+            if self.player==1:
+                segment.set_color(constants.GREEN)
+            else:
+                segment.set_color(constants.RED)
 
     def turn_head(self, velocity):
         self._segments[0].set_velocity(velocity)
@@ -70,7 +73,7 @@ class Snake(Actor):
                 segment.set_color(color)
                 self._segments.append(segment)
         else:
-            x = 400
+            x = 700
             y = int(constants.MAX_Y / 2)
 
             for i in range(constants.SNAKE_LENGTH):
