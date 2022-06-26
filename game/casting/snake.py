@@ -73,7 +73,7 @@ class Snake(Actor):
                 segment.set_color(color)
                 self._segments.append(segment)
         else:
-            x = 700
+            x = 600
             y = int(constants.MAX_Y / 2)
 
             for i in range(constants.SNAKE_LENGTH):

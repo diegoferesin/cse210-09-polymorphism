@@ -38,10 +38,15 @@ class HandleCollisionsAction(Action):
             cast (Cast): The cast of Actors in the game.
         """
         food = cast.get_first_actor("foods")
+
         score = cast.get_first_actor("scores")
         snake = cast.get_first_actor("snakes")
         head = snake.get_head()
-        
+
+        score2 = cast.get_second_actor("scores")
+        snake2 = cast.get_second_actor("snakes")
+        head2 = snake2.get_head()
+
 
         if head.get_position().equals(food.get_position()):
             points = food.get_points()
@@ -49,17 +54,14 @@ class HandleCollisionsAction(Action):
             score.add_points(points)
             food.reset()
             print("collision")
-
-        score2 = cast.get_second_actor("scores")
-        snake2 = cast.get_second_actor("snakes")
-        head2 = snake2.get_head()
-
         if head2.get_position().equals(food.get_position()):
             points = food.get_points()
             snake2.grow_tail(points)
             score2.add_points(points)
             food.reset()
             print("collision")
+
+
 
     def _handle_segment_collision(self, cast):
         """Sets the game over flag if the snake collides with one of its segments.
