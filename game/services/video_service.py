@@ -90,3 +90,6 @@ class VideoService:
     def _get_x_offset(self, text, font_size):
         width = pyray.measure_text(text, font_size)
         return int(width / 2)
+
+    def get_time(self):
+        return pyray.get_time()

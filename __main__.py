@@ -5,6 +5,7 @@ from game.casting.snake import Snake
 from game.directing.director import Director
 from game.scripting.control_actors_action import ControlActorsAction
 from game.scripting.draw_actors_action import DrawActorsAction
+from game.scripting.TimedActions import TimedActions
 from game.scripting.handle_collisions_action import HandleCollisionsAction
 from game.scripting.move_actors_action import MoveActorsAction
 from game.scripting.script import Script
@@ -28,11 +29,14 @@ def main():
     keyboard_service = KeyboardService()
     video_service = VideoService()
 
+
+
     script = Script()
     script.add_action("input", ControlActorsAction(keyboard_service))
     script.add_action("input", ControlActorsAction(keyboard_service))
     script.add_action("update", MoveActorsAction())
     script.add_action("update", HandleCollisionsAction())
+    script.add_action("timed_update", TimedActions())
     script.add_action("output", DrawActorsAction(video_service))
     
     director = Director(video_service)
