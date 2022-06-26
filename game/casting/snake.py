@@ -23,6 +23,7 @@ class Snake(Actor):
 
     def move_next(self):
         # move all segments
+        self.grow_tail(1)
         for segment in self._segments:
             segment.move_next()
         # update velocities
