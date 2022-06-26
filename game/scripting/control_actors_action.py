@@ -39,35 +39,39 @@ class ControlActorsAction(Action):
         score = cast.get_first_actor("scores")
         # left
         if self._keyboard_service.is_key_down('a'):
-            self._player1_direction = Point(-constants.CELL_SIZE, 0)
-            if self.direction1 != "left":
-                self.direction1 = "left"
-                snake.grow_tail(1)
-                score.add_points(1)
+            if self.direction1 != "right":
+                self._player1_direction = Point(-constants.CELL_SIZE, 0)
+                if self.direction1 != "left":
+                    self.direction1 = "left"
+                    snake.grow_tail(1)
+                    score.add_points(1)
         
         # right
         if self._keyboard_service.is_key_down('d'):
-            self._player1_direction = Point(constants.CELL_SIZE, 0)
-            if self.direction1 != "right":
-                self.direction1 = "right"
-                snake.grow_tail(1)
-                score.add_points(1)
+            if self.direction1 != "left":
+                self._player1_direction = Point(constants.CELL_SIZE, 0)
+                if self.direction1 != "right":
+                    self.direction1 = "right"
+                    snake.grow_tail(1)
+                    score.add_points(1)
 
         # up
         if self._keyboard_service.is_key_down('w'):
-            self._player1_direction = Point(0, -constants.CELL_SIZE)
-            if self.direction1 != "up":
-                self.direction1 = "up"
-                snake.grow_tail(1)
-                score.add_points(1)
+            if self.direction1 != "down":
+                self._player1_direction = Point(0, -constants.CELL_SIZE)
+                if self.direction1 != "up":
+                    self.direction1 = "up"
+                    snake.grow_tail(1)
+                    score.add_points(1)
 
         # down
         if self._keyboard_service.is_key_down('s'):
-            self._player1_direction = Point(0, constants.CELL_SIZE)
-            if self.direction1 != "down":
-                self.direction1 = "down"
-                snake.grow_tail(1)
-                score.add_points(1)
+            if self.direction1 != "up":
+                self._player1_direction = Point(0, constants.CELL_SIZE)
+                if self.direction1 != "down":
+                    self.direction1 = "down"
+                    snake.grow_tail(1)
+                    score.add_points(1)
 
         snake2 = cast.get_second_actor("snakes")
         snake.turn_head(self._player1_direction)
@@ -75,36 +79,40 @@ class ControlActorsAction(Action):
 
         # left
         if self._keyboard_service.is_key_down('j'):
-            self._player2_direction = Point(-constants.CELL_SIZE, 0)
-            if self.direction2 != "left":
-                self.direction2 = "left"            
-                snake2.grow_tail(1)
-                score2.add_points(1)
+            if self.direction2 != "right":
+                self._player2_direction = Point(-constants.CELL_SIZE, 0)
+                if self.direction2 != "left":
+                    self.direction2 = "left"            
+                    snake2.grow_tail(1)
+                    score2.add_points(1)
 
         
         # right
         if self._keyboard_service.is_key_down('l'):
-            self._player2_direction = Point(constants.CELL_SIZE, 0)
-            if self.direction2 != "right":
-                self.direction2 = "right"            
-                snake2.grow_tail(1)
-                score2.add_points(1)
+            if self.direction2 != "left":
+                self._player2_direction = Point(constants.CELL_SIZE, 0)
+                if self.direction2 != "right":
+                    self.direction2 = "right"            
+                    snake2.grow_tail(1)
+                    score2.add_points(1)
         
         # up
         if self._keyboard_service.is_key_down('i'):
-            self._player2_direction = Point(0, -constants.CELL_SIZE)
-            if self.direction2 != "up":
-                self.direction2 = "up"            
-                snake2.grow_tail(1)
-                score2.add_points(1)
+            if self.direction2 != "down":
+                self._player2_direction = Point(0, -constants.CELL_SIZE)
+                if self.direction2 != "up":
+                    self.direction2 = "up"            
+                    snake2.grow_tail(1)
+                    score2.add_points(1)
         
         # down
         if self._keyboard_service.is_key_down('k'):
-            self._player2_direction = Point(0, constants.CELL_SIZE)
-            if self.direction2 != "down":
-                self.direction2 = "down"            
-                snake2.grow_tail(1)
-                score2.add_points(1)
+            if self.direction2 != "up":
+                self._player2_direction = Point(0, constants.CELL_SIZE)
+                if self.direction2 != "down":
+                    self.direction2 = "down"            
+                    snake2.grow_tail(1)
+                    score2.add_points(1)
         
 
         snake2.turn_head(self._player2_direction)
