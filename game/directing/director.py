@@ -31,8 +31,10 @@ class Director:
                 self.timer = self._video_service.get_time()
                 self._execute_actions("timed_update", cast, script)
             self._execute_actions("output", cast, script)
+            if self._video_service.get_time() > 10:
+                self._video_service.close_window()
+                self.second_level(cast,script)
         self._video_service.close_window()
-        self.second_level(cast,script)
 
     def second_level(self,cast,script):
         self._video_service.open_window()
@@ -44,7 +46,10 @@ class Director:
                 self._execute_actions("timed_update", cast, script)
             self._execute_actions("output", cast, script)
         self._video_service.close_window()
-        self.third_level(cast,script)
+        if self._video_service.get_time() > 10:
+                self._video_service.close_window()
+                self.third_level(cast,script)
+        self._video_service.close_window()
 
     def third_level(self,cast,script):
         self._video_service.open_window()
@@ -55,6 +60,8 @@ class Director:
                 self.timer = self._video_service.get_time()
                 self._execute_actions("timed_update", cast, script)
             self._execute_actions("output", cast, script)
+        if self._video_service.get_time() > 10:
+                self._video_service.close_window()
         self._video_service.close_window()
 
     def _execute_actions(self, group, cast, script):
