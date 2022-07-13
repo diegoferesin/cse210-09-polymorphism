@@ -1,5 +1,6 @@
 from game.casting.cast import Cast
 from game.casting.food import Food
+from game.casting.badfood import badFood
 from game.casting.score import Score
 from game.casting.snake import Snake
 from game.directing.director import Director
@@ -18,14 +19,15 @@ def main():
     # create the cast
     cast = Cast()
     cast.add_actor("foods", Food())
-    food = cast.get_first_actor("foods")
+    cast.add_actor("badfoods", badFood())
+    
 
     cast.add_actor("snakes", Snake(1))
     cast.add_actor("snakes", Snake(2))
     cast.add_actor("scores", Score(1))
     cast.add_actor("scores", Score(2))
    
-    # start the game
+    # start the gameijkj
     keyboard_service = KeyboardService()
     video_service = VideoService()
 

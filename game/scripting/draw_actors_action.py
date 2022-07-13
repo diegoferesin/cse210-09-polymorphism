@@ -1,3 +1,4 @@
+from game.casting.badfood import badFood
 from game.scripting.action import Action
 
 
@@ -29,6 +30,7 @@ class DrawActorsAction(Action):
         score = cast.get_first_actor("scores")
         score2 = cast.get_second_actor("scores")
         food = cast.get_first_actor("foods")
+        badFood = cast.get_first_actor("badfoods")
         snake = cast.get_first_actor("snakes")
         segments = snake.get_segments()
         snake2 = cast.get_second_actor("snakes")
@@ -37,6 +39,7 @@ class DrawActorsAction(Action):
 
         self._video_service.clear_buffer()
         self._video_service.draw_actor(food)
+        self._video_service.draw_actor(badFood)
         self._video_service.draw_actors(segments)
         self._video_service.draw_actors(segments2)
         self._video_service.draw_actor(score)

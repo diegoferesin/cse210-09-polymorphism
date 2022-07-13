@@ -39,6 +39,15 @@ class Score(Actor):
         self._points += points
         self.set_text(f"Player {self.player_num} score: {self._points}")
 
+    def subtract_points(self, points):
+        """Adds the given points to the score's total points.
+        
+        Args:
+            points (int): The points to add.
+        """
+        self._points -= points
+        self.set_text(f"Player {self.player_num} score: {self._points}")
+
     def get_points(self):
         '''Returns the current number of points of said player'''
         return self._points

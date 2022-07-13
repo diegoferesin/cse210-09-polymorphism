@@ -1,18 +1,20 @@
 import constants
 from game.casting.actor import Actor
 from game.shared.point import Point
+from game.scripting.handle_collisions_action import HandleCollisionsAction
 
 
 class Snake(Actor):
     """
     A long limbless reptile.
-    
+
     The responsibility of Snake is to move itself.
 
     Attributes:
         _points (int): The number of points the food is worth.
     """
-    def __init__(self,player_num):
+
+    def __init__(self, player_num):
         super().__init__()
         self._segments = []
         self.player = player_num
@@ -36,25 +38,60 @@ class Snake(Actor):
         return self._segments[0]
 
     def grow_tail(self, number_of_segments):
+        handle = HandleCollisionsAction()
+        if not handle._is_game_over:
+            for i in range(number_of_segments):
+                tail = self._segments[-1]
+                velocity = tail.get_velocity()
+                offset = velocity.reverse()
+                position = tail.get_position().add(offset)
+
+                segment = Actor()
+                segment.set_position(position)
+                segment.set_velocity(velocity)
+                segment.set_text("#")
+                self._segments.append(segment)
+                if self.player == 1:
+                    segment.set_color(constants.GREEN)
+                else:
+                    segment.set_color(constants.RED)
+        elif handle._is_game_over:
+            for i in range(number_of_segments):
+                tail = self._segments[-1]
+                velocity = tail.get_velocity()
+                offset = velocity.reverse()
+                position = tail.get_position().add(offset)
+
+                segment = Actor()
+                segment.set_position(position)
+                segment.set_velocity(velocity)
+                segment.set_text("#")
+                self._segments.append(segment)
+                if self.player == 1:
+                    segment.set_color(constants.WHITE)
+                else:
+                    segment.set_color(constants.WHITE)
+
+    def grow_tail2(self, number_of_segments):
         for i in range(number_of_segments):
             tail = self._segments[-1]
             velocity = tail.get_velocity()
             offset = velocity.reverse()
             position = tail.get_position().add(offset)
-            
+
             segment = Actor()
             segment.set_position(position)
             segment.set_velocity(velocity)
             segment.set_text("#")
             self._segments.append(segment)
-            if self.player==1:
-                segment.set_color(constants.GREEN)
+            if self.player == 1:
+                segment.set_color(constants.WHITE)
             else:
-                segment.set_color(constants.RED)
+                segment.set_color(constants.WHITE)
 
     def turn_head(self, velocity):
         self._segments[0].set_velocity(velocity)
-    
+
     def _prepare_body(self):
         if self.player == 1:
             x = 300
@@ -65,7 +102,7 @@ class Snake(Actor):
                 velocity = Point(0, 1 * -constants.CELL_SIZE)
                 text = "8" if i == 0 else "#"
                 color = constants.GREEN
-                
+
                 segment = Actor()
                 segment.set_position(position)
                 segment.set_velocity(velocity)
@@ -81,7 +118,7 @@ class Snake(Actor):
                 velocity = Point(0, 1 * -constants.CELL_SIZE)
                 text = "8" if i == 0 else "#"
                 color = constants.RED
-                
+
                 segment = Actor()
                 segment.set_position(position)
                 segment.set_velocity(velocity)
