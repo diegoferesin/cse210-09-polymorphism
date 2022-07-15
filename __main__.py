@@ -3,6 +3,7 @@ from game.casting.food import Food
 from game.casting.badfood import badFood
 from game.casting.score import Score
 from game.casting.snake import Snake
+from game.casting.timer import Timer
 from game.directing.director import Director
 from game.scripting.control_actors_action import ControlActorsAction
 from game.scripting.draw_actors_action import DrawActorsAction
@@ -26,6 +27,7 @@ def main():
     cast.add_actor("snakes", Snake(2))
     cast.add_actor("scores", Score(1))
     cast.add_actor("scores", Score(2))
+    cast.add_actor("timer", Timer())
    
     # start the gameijkj
     keyboard_service = KeyboardService()

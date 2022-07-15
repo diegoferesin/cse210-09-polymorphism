@@ -20,17 +20,21 @@ class TimedActions(Action):
         handle = HandleCollisionsAction()
         snakes = cast.get_actors("snakes")
         scores = cast.get_actors("scores")
+        timer = cast.get_first_actor("timer")
         if not handle._is_game_over:
+            #timer.add_points(1)
             for snake in snakes:
                 snake.grow_tail(1)
                 print(handle._is_game_over)
             for score in scores:
-                score.add_points(1)
+                #score.add_points(1)
+                pass
         elif handle._is_game_over:
             for snake in snakes:
-                snake.grow_tail2(1)
+                #snake.grow_tail2(1)
                 print(handle._is_game_over)
             for score in scores:
-                score.add_points(1)
+                #score.add_points(1)
+                pass
         
             
