@@ -55,27 +55,25 @@ class HandleCollisionsAction(Action):
             snake.grow_tail(points)
             score.add_points(points)
             food.reset()
-            badFood.reset()
             print("collision")
+
         if head2.get_position().equals(food.get_position()):
             points = food.get_points()
             snake2.grow_tail(points)
             score2.add_points(points)
             food.reset()
-            badFood.reset()
             print("collision")
         
         if head.get_position().equals(badFood.get_position()):
             points = badFood.get_points()
             score.subtract_points(points)
             badFood.reset()
-            food.reset()
             print("collision")
+
         if head2.get_position().equals(badFood.get_position()):
             points = badFood.get_points()
             score2.subtract_points(points)
             badFood.reset()
-            food.reset()
             print("collision")
 
 
