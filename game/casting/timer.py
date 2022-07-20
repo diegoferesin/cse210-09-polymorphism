@@ -17,12 +17,21 @@ class Timer(Actor):
     def __init__(self):
         super().__init__()
         self.position = Point(400,0)
-        self._timer = 0
+        self._time = 0
+
+    def add_time(self, time):
+            """Adds the given points to the score's total points.
+            
+            Args:
+                points (int): The points to add.
+            """
+            self._time += time
+            self.set_text(f"Timer: {self._time}")
 
     def set_time(self, time):
         """Set time for the timer."""
         self.timer = time
-        self.set_text(f"Timer {self._timer}")
+        self.set_text(f"Timer: {self._time}")
 
     def get_time(self):
         '''Returns the current number of points of said player'''

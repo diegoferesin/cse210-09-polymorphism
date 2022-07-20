@@ -25,6 +25,7 @@ class TimedActions(Action):
             #timer.add_points(1)
             for snake in snakes:
                 snake.grow_tail(1)
+                timer.add_time(1)
                 print(handle._is_game_over)
             for score in scores:
                 #score.add_points(1)
