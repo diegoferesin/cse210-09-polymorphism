@@ -9,7 +9,7 @@ class TimeManager(Action):
     than zero.
     """
     def __init__(self, video_service):
-        self.video_service = video_service
+        self._video_service = video_service
 
 
 
@@ -21,7 +21,7 @@ class TimeManager(Action):
             cast (Cast): The cast of Actors in the game.
             script (Script): The script of Actions in the game.
         """
-        time = self.video_service.get_time()
+        time = self._video_service.get_time()
         timer = cast.get_first_actor("timer")
         timer.set_time(time)
         

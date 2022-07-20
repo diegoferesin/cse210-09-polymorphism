@@ -1,5 +1,5 @@
 from game.scripting.action import Action
-from game.scripting.handle_collisions_action import HandleCollisionsAction
+from game.casting.badfood import badFood
 
 
 class TimedActions(Action):
@@ -9,6 +9,9 @@ class TimedActions(Action):
     The responsibility of MoveActorsAction is to move all the actors that have a velocity greater
     than zero.
     """
+    def __init__(self):
+        self._level = 1
+
 
     def execute(self, cast, script):
         """Executes the move actors action.
@@ -17,24 +20,13 @@ class TimedActions(Action):
             cast (Cast): The cast of Actors in the game.
             script (Script): The script of Actions in the game.
         """
-        handle = HandleCollisionsAction()
-        snakes = cast.get_actors("snakes")
-        scores = cast.get_actors("scores")
-        timer = cast.get_first_actor("timer")
-        if not handle._is_game_over:
-            #timer.add_points(1)
-            for snake in snakes:
-                snake.grow_tail(1)
-                print(handle._is_game_over)
-            for score in scores:
-                #score.add_points(1)
-                pass
-        elif handle._is_game_over:
-            for snake in snakes:
-                #snake.grow_tail2(1)
-                print(handle._is_game_over)
-            for score in scores:
-                #score.add_points(1)
-                pass
+        self._level +=1
+        badfood_counter = len(cast.get_actors("badfoods"))
+        if badfood_counter < self._level:
+            cast.add_actor("badfoods", badFood())
+
+    def get_level(self):
+        
+        return self._level
         
             

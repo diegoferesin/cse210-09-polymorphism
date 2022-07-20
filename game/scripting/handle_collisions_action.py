@@ -40,7 +40,7 @@ class HandleCollisionsAction(Action):
             cast (Cast): The cast of Actors in the game.
         """
         food = cast.get_first_actor("foods")
-        badFood = cast.get_first_actor("badfoods")
+        badfoods = cast.get_actors("badfoods")
 
         score = cast.get_first_actor("scores")
         snake = cast.get_first_actor("snakes")
@@ -52,12 +52,12 @@ class HandleCollisionsAction(Action):
             snake.grow_tail(points)
             score.add_points(points)
             food.reset()
-
-        if head.get_position().equals(badFood.get_position()):
-            self._audio_service.playsound(constants.NEGATIVE_FOOD)
-            points = badFood.get_points()
-            score.subtract_points(points)
-            badFood.reset()
+        for badfood in badfoods:
+            if head.get_position().equals(badfood.get_position()):
+                self._audio_service.playsound(constants.NEGATIVE_FOOD)
+                points = badfood.get_points()
+                score.subtract_points(points)
+                badfood.reset()
 
 
     def _handle_segment_collision(self, cast):
