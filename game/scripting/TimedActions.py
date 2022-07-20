@@ -29,6 +29,10 @@ class TimedActions(Action):
         badfood_counter = len(cast.get_actors("badfoods"))
         if badfood_counter < self._level:
             cast.add_actor("badfoods", badFood())
+        
+        if self._level == 10 or self._level == 20 or self._level == 30:
+            self._audio_service.playsound(constants.WARNING)    
+
 
     def get_level(self):
         

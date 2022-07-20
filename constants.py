@@ -5,6 +5,7 @@ NEGATIVE_FOOD = "game/assets/sounds/powerdown.ogg"
 LEVEL_UP = "game/assets/sounds/level.wav"
 GAME_CLEAR = "game/assets/sounds/clear.wav"
 GAME_OVER = "game/assets/sounds/over.wav"
+WARNING = "game/assets/sounds/warning.wav"
 COLUMNS = 40
 ROWS = 20
 CELL_SIZE = 15

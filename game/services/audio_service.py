@@ -21,4 +21,11 @@ class AudioService:
         """
         playsound = pygame.mixer.Sound(sound)
         playsound.play()
+    
+    def playBackgroundMusic(self, music):
+        """Plays the background music
+        
+        Args:
+            music: music's path to play it.        
+        """
         
