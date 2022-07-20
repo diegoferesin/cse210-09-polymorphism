@@ -32,7 +32,7 @@ class Timer(Actor):
         """Set time for the timer."""
 
         self._timer = time
-        self.set_text(f"Timer {self._timer:.0f}")
+        self.set_text(f"Timer {self._time:.0f}")
 
 
     def get_time(self):
