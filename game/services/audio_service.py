@@ -10,9 +10,15 @@ class AudioService:
         pygame.mixer.init()
 
     def stop(self):
+        """Stops the mixer"""
         pygame.mixer.stop()
         
     def playsound(self, sound):
+        """Plays the sound
+        
+        Args:
+            sound: Sound's path to play it.        
+        """
         playsound = pygame.mixer.Sound(sound)
         playsound.play()
         
