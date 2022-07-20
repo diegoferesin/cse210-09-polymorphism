@@ -2,6 +2,7 @@ from game.casting.actor import Actor
 from game.shared.point import Point
 
 
+
 class Timer(Actor):
     """
     A record of points made or lost. 
@@ -16,20 +17,18 @@ class Timer(Actor):
     def __init__(self):
         super().__init__()
         self.position = Point(400,0)
-        self._time = 0
+        self._timer = 0
 
-    def add_time(self, points):
-        """Adds the given points to the score's total points.
-        
-        Args:
-            points (int): The points to add.
-        """
-        self._points += points
-        self.set_text(f"Timer: {self._points}")
+    def set_time(self, time):
+        """Set time for the timer."""
+        self.timer = time
+        self.set_text(f"Timer {self._timer}")
 
     def get_time(self):
         '''Returns the current number of points of said player'''
         return self._time
 
+
     def get_position(self):
         return self.position
+
