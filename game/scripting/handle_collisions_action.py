@@ -2,6 +2,7 @@ import constants
 from game.casting.actor import Actor
 from game.scripting.action import Action
 from game.shared.point import Point
+from game.services.audio_service import AudioService
 
 
 class HandleCollisionsAction(Action):
@@ -18,6 +19,7 @@ class HandleCollisionsAction(Action):
     def __init__(self):
         """Constructs a new HandleCollisionsAction."""
         self._is_game_over = False
+        self._audio_service = AudioService()
 
     def execute(self, cast, script):
         """Executes the handle collisions action.
@@ -45,12 +47,14 @@ class HandleCollisionsAction(Action):
         head = snake.get_head()
 
         if head.get_position().equals(food.get_position()):
+            self._audio_service.playsound(constants.POSITIVE_SOUND)
             points = food.get_points()
             snake.grow_tail(points)
             score.add_points(points)
             food.reset()
 
         if head.get_position().equals(badFood.get_position()):
+            self._audio_service.playsound(constants.NEGATIVE_FOOD)
             points = badFood.get_points()
             score.subtract_points(points)
             badFood.reset()

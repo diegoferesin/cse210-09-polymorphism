@@ -1,6 +1,7 @@
 from game.shared.color import Color
 
-
+POSITIVE_SOUND = "game/assets/sounds/coin.ogg"
+NEGATIVE_FOOD = "game/assets/sounds/powerdown.ogg"
 COLUMNS = 40
 ROWS = 20
 CELL_SIZE = 15

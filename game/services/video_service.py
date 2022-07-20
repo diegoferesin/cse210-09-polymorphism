@@ -1,5 +1,6 @@
 import pyray
 import constants
+from game.services.audio_service import AudioService
 
 
 class VideoService:
@@ -14,9 +15,11 @@ class VideoService:
             debug (bool): whether or not to draw in debug mode.
         """
         self._debug = debug
+        self._audio_service = AudioService()
 
     def close_window(self):
         """Closes the window and releases all computing resources."""
+        self._audio_service.stop()
         pyray.close_window()
 
     def clear_buffer(self):
@@ -78,6 +81,7 @@ class VideoService:
         """
         pyray.init_window(constants.MAX_X, constants.MAX_Y, constants.CAPTION)
         pyray.set_target_fps(constants.FRAME_RATE)
+        self._audio_service.initialize()
 
     def _draw_grid(self):
         """Draws a grid on the screen."""
