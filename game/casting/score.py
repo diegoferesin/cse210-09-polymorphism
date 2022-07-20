@@ -54,3 +54,6 @@ class Score(Actor):
 
     def get_position(self):
         return self.position
+    
+    def __lt__(self, other):
+        return self._points < other._points

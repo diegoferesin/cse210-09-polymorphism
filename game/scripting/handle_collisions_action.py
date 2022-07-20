@@ -3,6 +3,7 @@ from game.casting.actor import Actor
 from game.scripting.action import Action
 from game.shared.point import Point
 from game.services.audio_service import AudioService
+from game.casting.score import Score
 
 
 class HandleCollisionsAction(Action):
@@ -46,6 +47,8 @@ class HandleCollisionsAction(Action):
         snake = cast.get_first_actor("snakes")
         head = snake.get_head()
 
+        startGame = Score(0)
+
         if head.get_position().equals(food.get_position()):
             self._audio_service.playsound(constants.POSITIVE_SOUND)
             points = food.get_points()
@@ -57,7 +60,11 @@ class HandleCollisionsAction(Action):
                 self._audio_service.playsound(constants.NEGATIVE_FOOD)
                 points = badfood.get_points()
                 score.subtract_points(points)
+
+                if score < startGame:
+                    self._is_game_over = True
                 badfood.reset()
+        
 
 
     def _handle_segment_collision(self, cast):
