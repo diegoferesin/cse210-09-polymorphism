@@ -1,5 +1,8 @@
+from asyncio import constants
+import constants
 from game.scripting.action import Action
 from game.casting.badfood import badFood
+from game.services.audio_service import AudioService
 
 
 class TimedActions(Action):
@@ -11,6 +14,7 @@ class TimedActions(Action):
     """
     def __init__(self):
         self._level = 1
+        self._audio_service = AudioService()
 
 
     def execute(self, cast, script):
@@ -20,7 +24,7 @@ class TimedActions(Action):
             cast (Cast): The cast of Actors in the game.
             script (Script): The script of Actions in the game.
         """
-
+        self._audio_service.playsound(constants.LEVEL_UP)    
         self._level +=1
         badfood_counter = len(cast.get_actors("badfoods"))
         if badfood_counter < self._level:

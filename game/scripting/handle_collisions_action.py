@@ -84,6 +84,7 @@ class HandleCollisionsAction(Action):
             cast (Cast): The cast of Actors in the game.
         """
         if self._is_game_over:
+            self._audio_service.playsound(constants.GAME_OVER)
             snake = cast.get_first_actor("snakes")
             segments = snake.get_segments()
             food = cast.get_first_actor("foods")
