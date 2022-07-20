@@ -31,13 +31,13 @@ class Timer(Actor):
     def set_time(self, time):
         """Set time for the timer."""
 
-        self._timer = time
+        self._time = time
         self.set_text(f"Timer {self._time:.0f}")
 
 
     def get_time(self):
         '''Returns the current number of points of said player'''
-        return self._timer
+        return self._time
 
 
     def get_position(self):
